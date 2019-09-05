@@ -1,0 +1,94 @@
+$primary-color: #1B75BF;
+$primary-color-dark: #1C3040;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+  
+body {
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 62.5%;
+}
+
+.todoApp {
+    max-width: 1920px;
+    display: grid;
+    grid-template-columns: minmax(2rem, .2fr) 1fr minmax(2rem, .2fr);
+    grid-template-rows: 15vh 10vh min-content;
+}
+.todoModal {
+    display: grid;
+    justify-content: center;
+    padding: 1rem;
+    grid-gap: 1rem;
+    align-items: center;
+    align-content: center;
+    grid-template-columns: minmax(2rem, .4fr) repeat(6, 1fr) minmax(2rem, .4fr);
+    grid-template-rows: repeat(5, minmax(3rem, min-content));
+
+    h2{
+        font-size: 2rem;
+        grid-column: 2 / 8;
+        text-align: center;
+    }
+
+    &__input,
+    &__btns {
+        grid-column: 2 / 8;
+    }
+
+    &__input {
+        font-size: 1.1rem;
+        padding: 10px;
+        margin-right: 10px;
+        border: 1px solid $primary-color;
+        text-align: center;
+        grid-row: 2 / 5;
+    }
+
+    &__btns {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        grid-row: 5 / -1;
+
+        button {
+            text-transform: uppercase;
+            font-family: 'Roboto';
+            width: 80px;
+            margin: 0 5px;
+            border: none;
+            background-color: #1f99e8;
+            font-size: .9rem;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color .3s;
+            &:hover {
+                background-color: $primary-color-dark;
+            }
+        }
+
+        div{
+            width: 80px;
+            background-color: #1f99e8;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color .3s;
+            &:hover{
+                background-color: $primary-color-dark;
+            }
+        }
+    }
+
+}
+  

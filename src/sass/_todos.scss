@@ -1,0 +1,113 @@
+.todos{
+    grid-column: 2 / 3;
+
+    &__search{
+        display: flex;
+        font-size: 1.1rem;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    &__input {
+
+        font-family: 'Roboto';
+        font-size: 1.1rem;
+        &--text {
+            padding: 8px;
+            width: 40vw;
+            max-width: 600px;
+            margin-right: 10px;
+            border: none;
+            border-bottom: 1px solid darkgrey;
+            text-align: center;
+        }
+    }
+
+    &__todo-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-gap: 1rem;
+    }
+
+    &__todo {
+        display: grid;
+        background: #b4e4fe;
+        padding: .8rem;
+        font-size: 1rem;
+        color: #1e1e1e;
+        border-radius: 8px;
+        height: 150px;
+        box-shadow: 0.4rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
+        transition: background-color .3s;
+
+        &--checkBox {
+            display: flex;
+            align-items: center;
+            width: 70px;
+            height: 30px;
+            margin: 0 5px;
+            border: none;
+            background: #e1f5ff;
+            text-transform: uppercase;
+            font-size: .8rem;
+            transition: all .2s;
+            border-radius: 5px;
+            justify-content: center;
+            &:hover {
+                background: #1fa7f7;
+            }
+            label {
+                display: inline-block;
+                margin-right: 3px;
+                font-size: .9rem;
+                cursor: pointer;
+            }
+        }
+
+        &--done {
+            background-color: lightgray;
+        }
+
+        &--content {
+            display: flex;
+            flex-direction: column;
+            padding: .5rem;
+        }
+
+        &--btns {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        &--btn {
+            width: 70px;
+            height: 30px;
+            margin: 0 5px;
+            border: none;
+            background: #e1f5ff;
+            text-transform: uppercase;
+            font-size: .8rem;
+            cursor: pointer;
+            transition: all .2s;
+            border-radius: 5px;
+            &:hover {
+                background: #1fa7f7;
+            }
+        }
+    }
+}
+
+.text{
+    &__todo {
+        font-size: 1.3rem;
+    }
+
+    &__doneOrNot{
+        font-size: .8rem;
+        color: #747474;
+        grid-column: 1 / -1;
+    }
+}

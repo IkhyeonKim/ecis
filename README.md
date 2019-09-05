@@ -1,3 +1,6 @@
+## 저는 create-react-app 패키지 매니지먼트를 사용해서 react app 을 만들었습니다.##
+## src 폴더 아래에 index.js 파일, components 폴더 하위 파일들, 그리고 스타일링을 위한 .scss 파일들 을 제가 만들었습니다 ##
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
