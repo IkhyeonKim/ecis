@@ -8,7 +8,7 @@ export default class Todos extends React.Component {
         super(props)
 
         this.state = {
-            searchText: '', // 아이템 조회를 위한 텍스트입니다.
+            searchText: undefined, // 아이템 조회를 위한 텍스트입니다.
             filtered: [], // 필터링을 통한 아이템들을 저장하기 위한 배열입니다.
             checked: false,
         }
@@ -63,10 +63,12 @@ export default class Todos extends React.Component {
                 </div>               
                 <div className="todos__todo-container">
                     {
-                        this.state.filtered.length === 0 ? 
+                        (this.state.filtered.length === 0 && this.state.searchText === undefined) ? 
                         this.props.todos.map( (todo) => this.renderTodos(todo)) : 
-                        this.state.filtered.map( (todo) => this.renderTodos(todo))
+                        (this.state.filtered.length === 0) ? <p className="text__sorry">Sorry, there's nothing to show you :/</p> :
+                        this.state.filtered.map( (todo) => this.renderTodos(todo)) 
                     }
+                    
                 </div>
 
             </div>
