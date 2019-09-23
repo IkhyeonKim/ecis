@@ -18,6 +18,8 @@ class TodoApp extends React.Component {
             newTodo: undefined, // todo가 수정 되었을 시 사용하는 상태입니다
             currentlyEditing: undefined, // 상세페이지(Modal) 에서 유저가 수정하기 전 상태입니다.
             targetToggle: undefined, // 상세페이지에서 할 일이 완료 되었는지 아닌지 체크하는 상태입니다.
+            searchText: undefined, // 아이템 조회를 위한 텍스트입니다.
+            filtered: [], // 필터링을 통한 아이템들을 저장하기 위한 배열입니다.
         }
         this.handleAddTodo = this.handleAddTodo.bind(this)
         this.handleDeleteTodo = this.handleDeleteTodo.bind(this)
@@ -25,8 +27,8 @@ class TodoApp extends React.Component {
         this.handleCancelEditingTodo = this.handleCancelEditingTodo.bind(this)
         this.handleTodoChange = this.handleTodoChange.bind(this)
         this.handleEditTodo = this.handleEditTodo.bind(this)
-        this.isExists = this.isExists.bind(this)
         this.handleToggleChange = this.handleToggleChange.bind(this)
+        this.isExists = this.isExists.bind(this)
         this.isChecked = this.isChecked.bind(this)
     }
 
@@ -109,8 +111,10 @@ class TodoApp extends React.Component {
 
     handleDeleteTodo(targetTodo){
         // Remove 버튼을 눌렀을 때 해당 하는 리스트 아이템을 필터링 한 뒤 새로운 배열을 반환합니다.
-        this.setState( () => {
-            return {todos: this.state.todos.filter( todo => todo[0] !== targetTodo[0] )}
+        this.setState( (prevState) => {
+            return {
+                todos: prevState.todos.filter( todo => todo[0] !== targetTodo[0])
+            }
         })
     }
 
@@ -168,11 +172,15 @@ class TodoApp extends React.Component {
 
     componentDidUpdate(prevProps, prevState){
         // 리스트에 아이템이 추가 또는 삭제되거나 아이템 상태가 완료 또는 미완료로 바뀔 때 마다 리 렌더링을 위한 함수입니다.
+        
         if((prevState.todos.length !== this.state.todos.length) || (prevState.targetToggle !== this.state.targetToggle)){
-
+            console.log('Length has changed')
             const json = JSON.stringify(this.state.todos)
             localStorage.setItem('todos', json)
-            this.forceUpdate()
+            
+            this.setState({
+                todos: this.state.todos
+            })
         }
     }
     

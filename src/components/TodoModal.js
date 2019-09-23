@@ -46,6 +46,7 @@ class TodoModal extends React.Component{
                             <button onClick={() => this.props.handleEditTodo()}>Okay</button>
                             <button onClick={() => this.props.handleCancelEditingTodo()}>Cancel</button>
                             <div>
+                                <label htmlFor={this.props.currentlyEditing + 'Modal'}>Done</label>
                                 <input 
                                     type="checkbox" 
                                     value="Done"
@@ -53,7 +54,6 @@ class TodoModal extends React.Component{
                                     defaultChecked={this.props.targetToggle} 
                                     onChange={() => this.props.handleToggleChange(this.props.currentlyEditing)} 
                                 />
-                                <label htmlFor={this.props.currentlyEditing + 'Modal'}>Done</label>
                             </div>
                         </div>
 

@@ -10,27 +10,43 @@ export default class Todos extends React.Component {
         this.state = {
             searchText: undefined, // 아이템 조회를 위한 텍스트입니다.
             filtered: [], // 필터링을 통한 아이템들을 저장하기 위한 배열입니다.
-            checked: false,
         }
         
         this.handleFilterTodos = this.handleFilterTodos.bind(this)
         this.renderTodos = this.renderTodos.bind(this)
         
     }
-
+    componentDidMount(){
+        this.setState({
+            filtered: this.props.todos
+        })
+    }
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.todos !== this.props.todos){
+            this.setState({
+                filtered: this.props.todos
+            })
+        }
+    }
 
     handleFilterTodos(event) {
         // 사용자가 할 일을 입력했을 시 해당하는 할 일을 필터링하고 상태를 변환시키는 함수 입니다.
-        const filteredTodos = this.props.todos.filter( todo => {
-            return todo[0].toLowerCase().includes(event.target.value)
-        })
-                
-        this.setState({
-            searchText: event.target.value,
-            filtered: filteredTodos
-        })
         
+        let currentTodos = []
+        let newTodos = []
 
+        if(event.target.value !== ''){
+            currentTodos = this.props.todos
+            newTodos = currentTodos.filter( todo => {
+                return todo[0].toLowerCase().includes(event.target.value)
+            })
+        }else{
+            newTodos = this.props.todos
+        }
+        this.setState({
+            filtered: newTodos,
+            searchText: event.target.value
+        })
     }
 
     renderTodos(todo){
@@ -63,10 +79,9 @@ export default class Todos extends React.Component {
                 </div>               
                 <div className="todos__todo-container">
                     {
-                        (this.state.filtered.length === 0 && this.state.searchText === undefined) ? 
-                        this.props.todos.map( (todo) => this.renderTodos(todo)) : 
-                        (this.state.filtered.length === 0) ? <p className="text__sorry">Sorry, there's nothing to show you :/</p> :
-                        this.state.filtered.map( (todo) => this.renderTodos(todo)) 
+                        (this.state.filtered.length === 0 && this.state.searchText !== undefined) ?
+                        <p className="text__sorry">Sorry, there's nothing to show you :/</p> :
+                        this.state.filtered.map( (todo) => this.renderTodos(todo))
                     }
                     
                 </div>
